@@ -20,7 +20,7 @@ const GATEWAYS = [
   "https://cloudflare-ipfs.com/ipfs/"
 ];
 
-const VALID_CHAIN_IDS = ['0x7a69', '0x539', '0x1691', '0x13882']; // 31337, 1337, 5777, 80002
+const VALID_CHAIN_IDS = ['0x7a69', '0x539', '0x1691', '0x13882'];
 
 type MasterVideo = {
   masterId: number;
@@ -219,7 +219,7 @@ function App() {
   const [resaleModal, setResaleModal] = useState<{ isOpen: boolean, tokenId: number | null, title: string }>({ isOpen: false, tokenId: null, title: "" });
   const [resalePrice, setResalePrice] = useState("0.5");
   const [notification, setNotification] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
-  const [searchQuery] = useState(""); // setter removed because it was unused
+  const [searchQuery] = useState(""); // removed unused setter
   const [creatorFilter, setCreatorFilter] = useState<string | null>(null);
 
   const pinataJWT = import.meta.env.VITE_PINATA_JWT || "";
@@ -522,6 +522,7 @@ function App() {
               return (
                 <div key={marketTab === 'primary' ? v.masterId : item.tokenId} className="glass-card market-item">
                   <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', background: '#000', marginBottom: '1rem' }}>
+                    {/* FIXED: controls={!!hasAccess} ensures boolean, not null/empty */}
                     <video src={v.videoUrl} controls={!!hasAccess} style={{ width: '100%', aspectRatio: '16/9', filter: hasAccess ? 'none' : 'blur(25px)' }} />
                     {!hasAccess && <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Lock size={32} /></div>}
                   </div>
