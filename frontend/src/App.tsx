@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { ethers, Contract, BrowserProvider, formatEther, parseEther } from 'ethers';
-import { Wallet, Lock, PlusCircle, Search, ShieldCheck, Handshake, TrendingUp, ChevronRight, History, Trophy, User, Zap, DollarSign, X, AlertTriangle, LogOut, Loader2, Globe, Tag, RefreshCw, PlayCircle, Library, ShoppingCart, Key } from 'lucide-react';
+import { ethers } from 'ethers';
+import { PlusCircle, Search, ShieldCheck, TrendingUp, History, Trophy, User, Zap, DollarSign, X, AlertTriangle, Loader2, Globe, Tag, PlayCircle, ShoppingCart } from 'lucide-react';
 import contractData from './contractData.json';
 import './index.css';
 
