@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { ethers } from 'ethers';
-import { PlusCircle, Search, ShieldCheck, TrendingUp, History, Trophy, User, Zap, DollarSign, X, AlertTriangle, Loader2, Globe, Tag, PlayCircle, ShoppingCart } from 'lucide-react';
+import { BrowserProvider, Contract, formatEther, parseEther } from 'ethers';
+import { ChevronRight, Wallet, Library, Handshake, Lock, Key, RefreshCw, LogOut } from 'lucide-react';
 import contractData from './contractData.json';
 import './index.css';
 
@@ -219,7 +219,7 @@ function App() {
   const [resaleModal, setResaleModal] = useState<{ isOpen: boolean, tokenId: number | null, title: string }>({ isOpen: false, tokenId: null, title: "" });
   const [resalePrice, setResalePrice] = useState("0.5");
   const [notification, setNotification] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery] = useState(""); // setter removed because it was unused
   const [creatorFilter, setCreatorFilter] = useState<string | null>(null);
 
   const pinataJWT = import.meta.env.VITE_PINATA_JWT || "";
@@ -522,7 +522,7 @@ function App() {
               return (
                 <div key={marketTab === 'primary' ? v.masterId : item.tokenId} className="glass-card market-item">
                   <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', background: '#000', marginBottom: '1rem' }}>
-                    <video src={v.videoUrl} controls={hasAccess} style={{ width: '100%', aspectRatio: '16/9', filter: hasAccess ? 'none' : 'blur(25px)' }} />
+                    <video src={v.videoUrl} controls={!!hasAccess} style={{ width: '100%', aspectRatio: '16/9', filter: hasAccess ? 'none' : 'blur(25px)' }} />
                     {!hasAccess && <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Lock size={32} /></div>}
                   </div>
                   <h3>{v.title}</h3>
